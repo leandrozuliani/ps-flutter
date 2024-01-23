@@ -1,6 +1,3 @@
-import 'dart:io';
-import 'dart:typed_data';
-
 import 'package:entregaudium/presentation/theme.dart';
 import 'package:entregaudium/screens/profile.dart';
 import 'package:flutter/material.dart';
@@ -84,7 +81,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                      builder: (context) => const ProfileScreen()),
+                      builder: (context) => ProfileScreen()),
                 );
               },
             ),
