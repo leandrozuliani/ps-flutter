@@ -1,6 +1,7 @@
 import 'dart:io';
 import 'dart:typed_data';
 
+import 'package:entregaudium/screens/profile.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
@@ -72,9 +73,25 @@ class _MyHomePageState extends State<MyHomePage> {
 
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.blue,
-        title: Text(widget.title, style: const TextStyle(color: Colors.white),),
-      ),
+          backgroundColor: Colors.blue,
+          title: Text(
+            widget.title,
+            style: const TextStyle(color: Colors.white),
+          ),
+          actions: <Widget>[
+            IconButton(
+              icon: const Icon(Icons.account_circle_outlined,
+                  color: Colors.white),
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => const ProfileScreen()),
+                );
+              },
+            ),
+          ],
+        ),
       body: GoogleMap(
           onMapCreated: _onMapCreated,
           initialCameraPosition: CameraPosition(
@@ -94,3 +111,4 @@ class _MyHomePageState extends State<MyHomePage> {
     return (await fi.image.toByteData(format: ui.ImageByteFormat.png))?.buffer.asUint8List();
   }
 }
+
