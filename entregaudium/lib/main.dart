@@ -1,6 +1,7 @@
 import 'dart:io';
 import 'dart:typed_data';
 
+import 'package:entregaudium/presentation/theme.dart';
 import 'package:entregaudium/screens/profile.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -21,10 +22,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Entregaudium',
-      theme: ThemeData(
-        colorScheme:  ColorScheme.fromSeed(seedColor: Colors.blue),
-        useMaterial3: true,
-      ),
+      theme: appTheme,
       home: const MyHomePage(title: 'Entregaudium'),
       debugShowCheckedModeBanner: false,
     );

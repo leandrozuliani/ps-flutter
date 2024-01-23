@@ -7,50 +7,50 @@ class ProfileScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(),
-      body: Column(
+      body: Stack(
         children: <Widget>[
-          Container(
+          Stack(
             alignment: Alignment.topCenter,
-            child: Image.asset(
-              'assets/images/img_entregador.png',
-              fit: BoxFit.fitHeight,
-            ),
+            children: [
+              Positioned(
+                top: 0,
+                child: Image.asset(
+                  'assets/images/img_entregador.png',
+                  fit: BoxFit.fitHeight,
+                  height: 450,
+                ),
+              ),
+            ],
           ),
-          Expanded(
+          Positioned(
+            bottom: 100,
+            left: 0,
+            right: 0,
             child: Container(
-              color: const Color(0xCC2B76C9),
+              color: const Color(0xCC2B76C9).withOpacity(0.8),
               padding:
                   const EdgeInsets.symmetric(vertical: 16.0, horizontal: 24.0),
-              child: const Column(
+              child: Column(
                 mainAxisAlignment: MainAxisAlignment.start,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 mainAxisSize: MainAxisSize.min,
                 children: <Widget>[
                   Text(
                     'Augusto Prado',
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 24,
-                      fontFamily: 'OpenSans',
-                    ),
+                    style: Theme.of(context).textTheme.displayLarge,
                   ),
-                  Text(
-                    'Coletor',
-                    style: TextStyle(
-                      color: Color(0xFFDFE9F7),
-                      fontSize: 16,
-                      fontFamily: 'OpenSansLight',
+                  Padding(
+                    padding: const EdgeInsets.symmetric(vertical: 8.0),
+                    child: Text(
+                      'Coletor',
+                      style: Theme.of(context).textTheme.titleMedium,
                     ),
                   ),
                   Padding(
-                    padding: EdgeInsets.symmetric(vertical: 16.0),
+                    padding: const EdgeInsets.symmetric(vertical: 16.0),
                     child: Text(
                       'Casado, 2 filhos e moro no Rio de Janeiro. Comecei a fazer entregas durante a pandemia para ajudar os mais vulneráveis e hoje estou mais satisfeito sabendo que estou fazendo a minha parte! Obrigado por tudo!',
-                      style: TextStyle(
-                        color: Color(0xFFECF4FF),
-                        fontSize: 15,
-                        fontFamily: 'OpenSans',
-                      ),
+                      style: Theme.of(context).textTheme.bodyMedium,
                       textAlign: TextAlign.left,
                     ),
                   ),
@@ -58,92 +58,74 @@ class ProfileScreen extends StatelessWidget {
               ),
             ),
           ),
-          Container(
-            color: const Color(0xFF2E91FE),
-            padding: const EdgeInsets.symmetric(vertical: 16.0),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: <Widget>[
-                Expanded(
-                  // Usa Expanded para cada Column
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: <Widget>[
-                      Image.asset('assets/images/ic_entregas.png', width: 20),
-                      const Text(
-                        '254',
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 22,
-                          fontFamily: 'Roboto',
+          Positioned(
+            bottom: 0,
+            left: 0,
+            right: 0,
+            child: Container(
+              color: const Color(0xFF2E91FE),
+              padding: const EdgeInsets.symmetric(vertical: 16.0),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: <Widget>[
+                  Expanded(
+                    // Usa Expanded para cada Column
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: <Widget>[
+                        Image.asset('assets/images/ic_entregas.png', width: 20),
+                        Text(
+                          '254',
+                          style: Theme.of(context).textTheme.headlineMedium,
+                          textAlign: TextAlign.center,
                         ),
-                        textAlign: TextAlign.center,
-                      ),
-                      const Text(
-                        'Entregas',
-                        style: TextStyle(
-                          color: Color(0xFFECF4FF),
-                          fontSize: 13,
-                          fontFamily: 'Roboto',
+                        Text(
+                          'Entregas',
+                          style: Theme.of(context).textTheme.labelSmall,
+                          textAlign: TextAlign.center,
                         ),
-                        textAlign: TextAlign.center,
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
-                ),
-                Expanded(
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: <Widget>[
-                      Image.asset('assets/images/ic_saldo.png', width: 20),
-                      const Text(
-                        'R\$ 33,50',
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 22,
-                          fontFamily: 'Roboto',
+                  Expanded(
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: <Widget>[
+                        Image.asset('assets/images/ic_saldo.png', width: 20),
+                        Text(
+                          'R\$ 33,50',
+                          style: Theme.of(context).textTheme.headlineMedium,
+                          textAlign: TextAlign.center,
                         ),
-                        textAlign: TextAlign.center,
-                      ),
-                      const Text(
-                        'Saldo',
-                        style: TextStyle(
-                          color: Color(0xFFECF4FF),
-                          fontSize: 13,
-                          fontFamily: 'Roboto',
+                        Text(
+                          'Saldo',
+                          style: Theme.of(context).textTheme.labelSmall,
+                          textAlign: TextAlign.center,
                         ),
-                        textAlign: TextAlign.center,
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
-                ),
-                Expanded(
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: <Widget>[
-                      Image.asset('assets/images/ic_nota.png', width: 20),
-                      const Text(
-                        '4.7',
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 22,
-                          fontFamily: 'Roboto',
+                  Expanded(
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: <Widget>[
+                        Image.asset('assets/images/ic_nota.png', width: 20),
+                        Text(
+                          '4.7',
+                          style: Theme.of(context).textTheme.headlineMedium,
+                          textAlign: TextAlign.center,
                         ),
-                        textAlign: TextAlign.center,
-                      ),
-                      const Text(
-                        'Nota',
-                        style: TextStyle(
-                          color: Color(0xFFECF4FF),
-                          fontSize: 13,
-                          fontFamily: 'Roboto',
+                        Text(
+                          'Nota',
+                          style: Theme.of(context).textTheme.labelSmall,
+                          textAlign: TextAlign.center,
                         ),
-                        textAlign: TextAlign.center,
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
           ),
         ],
