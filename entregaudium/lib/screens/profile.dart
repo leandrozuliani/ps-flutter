@@ -102,76 +102,58 @@ class ProfileScreen extends StatelessWidget {
               children: <Widget>[
                 Expanded(
                   child: Container(
-                    decoration: BoxDecoration(
+                    decoration: const BoxDecoration(
                       border: Border(
                         right: BorderSide(width: 1.0, color: Colors.white),
                       ),
                     ),
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: <Widget>[
-                        Image.asset('assets/images/ic_entregas.png', width: 20),
-                        Text(
-                          '$totalEntregas',
-                          style: Theme.of(context).textTheme.headlineMedium,
-                          textAlign: TextAlign.center,
-                        ),
-                        Text(
-                          'Entregas',
-                          style: Theme.of(context).textTheme.labelSmall,
-                          textAlign: TextAlign.center,
-                        ),
-                      ],
-                    ),
+                    child: buildColumnItem(
+                        context,
+                        'assets/images/ic_entregas.png',
+                        '$totalEntregas',
+                        'Entregas'),
                   ),
                 ),
                 Expanded(
                   child: Container(
-                    decoration: BoxDecoration(
-                      border: Border(
-                        right: BorderSide(width: 1.0, color: Colors.white),
+                      decoration: const BoxDecoration(
+                        border: Border(
+                          right: BorderSide(width: 1.0, color: Colors.white),
+                        ),
                       ),
-                    ),
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: <Widget>[
-                        Image.asset('assets/images/ic_saldo.png', width: 20),
-                        Text(
+                      child: buildColumnItem(
+                          context,
+                          'assets/images/ic_saldo.png',
                           'R\$ ${totalGanhos.toStringAsFixed(2)}',
-                          style: Theme.of(context).textTheme.headlineMedium,
-                          textAlign: TextAlign.center,
-                        ),
-                        Text(
-                          'Saldo',
-                          style: Theme.of(context).textTheme.labelSmall,
-                          textAlign: TextAlign.center,
-                        ),
-                      ],
-                    ),
-                  ),
+                          'Saldo')),
                 ),
                 Expanded(
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: <Widget>[
-                      Image.asset('assets/images/ic_nota.png', width: 20),
-                      Text(
-                        '$mediaAvaliacoes',
-                        style: Theme.of(context).textTheme.headlineMedium,
-                        textAlign: TextAlign.center,
-                      ),
-                      Text(
-                        'Nota',
-                        style: Theme.of(context).textTheme.labelSmall,
-                        textAlign: TextAlign.center,
-                      ),
-                    ],
-                  ),
-                ),
+                    child: buildColumnItem(context, 'assets/images/ic_nota.png',
+                        '$mediaAvaliacoes', 'Nota')),
               ],
             ),
           ),
+        ),
+      ],
+    );
+  }
+
+  Widget buildColumnItem(
+      BuildContext context, String imagePath, String value, String label) {
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      crossAxisAlignment: CrossAxisAlignment.center,
+      children: <Widget>[
+        Image.asset(imagePath, width: 20),
+        Text(
+          value,
+          style: Theme.of(context).textTheme.headlineMedium,
+          textAlign: TextAlign.center,
+        ),
+        Text(
+          label,
+          style: Theme.of(context).textTheme.labelSmall,
+          textAlign: TextAlign.center,
         ),
       ],
     );
