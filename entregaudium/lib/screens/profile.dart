@@ -4,7 +4,7 @@ import 'package:entregaudium/utils/profile_utils.dart';
 import 'package:flutter/material.dart';
 
 class ProfileScreen extends StatelessWidget {
-   final EntregadorService dataProvider = EntregadorService();
+  final EntregadorService dataProvider = EntregadorService();
 
   ProfileScreen({super.key});
 
@@ -12,18 +12,19 @@ class ProfileScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(),
-  
       body: FutureBuilder<Entregador>(
         future: dataProvider.fetchProfile(),
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
             return const Center(child: CircularProgressIndicator());
           } else if (snapshot.hasError) {
-            return const Center(child: Text('Dados do entregador indisponíveis'));
+            return const Center(
+                child: Text('Dados do entregador indisponíveis'));
           } else if (snapshot.hasData) {
             return buildUserProfile(context, snapshot.data!);
           } else {
-            return const Center(child: Text('Dados do entregador indisponíveis'));
+            return const Center(
+                child: Text('Dados do entregador indisponíveis'));
           }
         },
       ),
@@ -33,7 +34,8 @@ class ProfileScreen extends StatelessWidget {
   Widget buildUserProfile(BuildContext context, Entregador entregador) {
     final totalEntregas = ProfileUtils.getTotalEntregas(entregador.historico);
     final totalGanhos = ProfileUtils.getTotalGanhos(entregador.historico);
-    final mediaAvaliacoes = ProfileUtils.getMediaAvaliacoes(entregador.historico);
+    final mediaAvaliacoes =
+        ProfileUtils.getMediaAvaliacoes(entregador.historico);
 
     return Stack(
       children: <Widget>[
@@ -99,40 +101,54 @@ class ProfileScreen extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: <Widget>[
                 Expanded(
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: <Widget>[
-                      Image.asset('assets/images/ic_entregas.png', width: 20),
-                      Text(
-                        '$totalEntregas',
-                        style: Theme.of(context).textTheme.headlineMedium,
-                        textAlign: TextAlign.center,
+                  child: Container(
+                    decoration: BoxDecoration(
+                      border: Border(
+                        right: BorderSide(width: 1.0, color: Colors.white),
                       ),
-                      Text(
-                        'Entregas',
-                        style: Theme.of(context).textTheme.labelSmall,
-                        textAlign: TextAlign.center,
-                      ),
-                    ],
+                    ),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: <Widget>[
+                        Image.asset('assets/images/ic_entregas.png', width: 20),
+                        Text(
+                          '$totalEntregas',
+                          style: Theme.of(context).textTheme.headlineMedium,
+                          textAlign: TextAlign.center,
+                        ),
+                        Text(
+                          'Entregas',
+                          style: Theme.of(context).textTheme.labelSmall,
+                          textAlign: TextAlign.center,
+                        ),
+                      ],
+                    ),
                   ),
                 ),
                 Expanded(
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: <Widget>[
-                      Image.asset('assets/images/ic_saldo.png', width: 20),
-                      Text(
-                        'R\$ ${totalGanhos.toStringAsFixed(2)}',
-                        style: Theme.of(context).textTheme.headlineMedium,
-                        textAlign: TextAlign.center,
+                  child: Container(
+                    decoration: BoxDecoration(
+                      border: Border(
+                        right: BorderSide(width: 1.0, color: Colors.white),
                       ),
-                      Text(
-                        'Saldo',
-                        style: Theme.of(context).textTheme.labelSmall,
-                        textAlign: TextAlign.center,
-                      ),
-                    ],
+                    ),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: <Widget>[
+                        Image.asset('assets/images/ic_saldo.png', width: 20),
+                        Text(
+                          'R\$ ${totalGanhos.toStringAsFixed(2)}',
+                          style: Theme.of(context).textTheme.headlineMedium,
+                          textAlign: TextAlign.center,
+                        ),
+                        Text(
+                          'Saldo',
+                          style: Theme.of(context).textTheme.labelSmall,
+                          textAlign: TextAlign.center,
+                        ),
+                      ],
+                    ),
                   ),
                 ),
                 Expanded(
